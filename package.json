@@ -1,0 +1,108 @@
+{
+  "name": "otak-filemeter",
+  "displayName": "Otak File Meter",
+  "description": "%extension.description%",
+  "publisher": "odangoo",
+  "license": "MIT",
+  "icon": "images/otak-filemeter-icon-128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsuyoshi-otake/otak-filemeter"
+  },
+  "bugs": {
+    "url": "https://github.com/tsuyoshi-otake/otak-filemeter/issues"
+  },
+  "homepage": "https://github.com/tsuyoshi-otake/otak-filemeter#readme",
+  "version": "0.1.0",
+  "files": [
+    "out/*.js",
+    "out/*.js.map",
+    "images/**",
+    "package.nls*.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "vscode": "^1.125.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:otakFilemeter.refresh"
+  ],
+  "main": "./out/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "%capabilities.untrustedWorkspaces%"
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "otakFilemeter.refresh",
+        "title": "%refresh.title%"
+      }
+    ],
+    "configuration": {
+      "title": "%configuration.title%",
+      "properties": {
+        "otakFilemeter.enabled": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": true,
+          "markdownDescription": "%configuration.enabled.description%"
+        },
+        "otakFilemeter.badgeMetric": {
+          "type": "string",
+          "scope": "resource",
+          "default": "size",
+          "enum": [
+            "size",
+            "lines"
+          ],
+          "enumDescriptions": [
+            "%configuration.badgeMetric.size%",
+            "%configuration.badgeMetric.lines%"
+          ],
+          "markdownDescription": "%configuration.badgeMetric.description%"
+        },
+        "otakFilemeter.showLineCountInTooltip": {
+          "type": "boolean",
+          "scope": "resource",
+          "default": false,
+          "markdownDescription": "%configuration.showLineCountInTooltip.description%"
+        },
+        "otakFilemeter.maxLineCountBytes": {
+          "type": "number",
+          "scope": "resource",
+          "default": 1048576,
+          "minimum": 0,
+          "markdownDescription": "%configuration.maxLineCountBytes.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "gen:nls": "node scripts/gen-package-nls.mjs",
+    "compile": "npm run gen:nls && tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src",
+    "test": "npm run compile && node scripts/run-unit-tests.mjs",
+    "package": "npm run compile && vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.125.0",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "@vscode/vsce": "^3.9.2",
+    "eslint": "^9.19.0",
+    "typescript": "^5.7.3"
+  }
+}

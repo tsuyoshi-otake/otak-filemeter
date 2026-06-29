@@ -1,0 +1,12 @@
+{
+  "capabilities.untrustedWorkspaces": "Explorerのローカル装飾のみを表示し、ワークスペース内のファイルは書き込みません。",
+  "configuration.badgeMetric.description": "Explorerの装飾バッジに表示する指標を制御します。",
+  "configuration.badgeMetric.lines": "検査できるサイズのファイルにテキスト行数を表示します。",
+  "configuration.badgeMetric.size": "コンパクトなファイルサイズバッジを表示します。",
+  "configuration.enabled.description": "Explorerのファイル指標バッジを有効にします。",
+  "configuration.maxLineCountBytes.description": "行数計算時にotak-filemeterが読み込む最大ファイルサイズをバイト単位で指定します。0にすると行数計算を無効化します。",
+  "configuration.showLineCountInTooltip.description": "検査できるサイズのファイルでは、ファイルサイズのツールチップに行数を追加します。",
+  "configuration.title": "Otak File Meter",
+  "extension.description": "VS Code Explorerにコンパクトなファイルサイズまたは行数バッジを表示します。",
+  "refresh.title": "File Meterバッジを更新"
+}
