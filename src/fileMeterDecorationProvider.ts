@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { FileMeterConfiguration, getFileMeterConfiguration } from './configuration';
 import { CONFIGURATION_SECTION } from './constants';
-import { formatExactSize, formatLineBadge, formatLineCount, formatSizeBadge } from './formatting';
+import { formatMetricsTooltip } from './formatting';
 import { countTextLines, shouldCountLines } from './lineCounter';
 
 interface CachedDecoration {
@@ -98,33 +98,12 @@ export class FileMeterDecorationProvider implements vscode.FileDecorationProvide
         configuration: FileMeterConfiguration,
         token: vscode.CancellationToken
     ): Promise<vscode.FileDecoration | undefined> {
-        const exactSize = formatExactSize(stat.size);
-
-        if (configuration.badgeMetric === 'lines') {
-            const lineCount = await this.readLineCount(uri, stat, configuration.maxLineCountBytes, token);
-            if (lineCount === undefined || token.isCancellationRequested) {
-                return undefined;
-            }
-
-            return new vscode.FileDecoration(
-                formatLineBadge(lineCount),
-                `${formatLineCount(lineCount)} - ${exactSize}`
-            );
-        }
-
-        const tooltipParts = [exactSize];
-        if (configuration.showLineCountInTooltip) {
-            const lineCount = await this.readLineCount(uri, stat, configuration.maxLineCountBytes, token);
-            if (lineCount !== undefined) {
-                tooltipParts.push(formatLineCount(lineCount));
-            }
-        }
-
+        const lineCount = await this.readLineCount(uri, stat, configuration.maxLineCountBytes, token);
         if (token.isCancellationRequested) {
             return undefined;
         }
 
-        return new vscode.FileDecoration(formatSizeBadge(stat.size), tooltipParts.join(' - '));
+        return new vscode.FileDecoration('i', formatMetricsTooltip(stat.size, lineCount));
     }
 
     private async readLineCount(
@@ -149,9 +128,5 @@ export class FileMeterDecorationProvider implements vscode.FileDecorationProvide
 }
 
 function createConfigurationKey(configuration: FileMeterConfiguration): string {
-    return [
-        configuration.badgeMetric,
-        configuration.showLineCountInTooltip,
-        configuration.maxLineCountBytes
-    ].join(':');
+    return String(configuration.maxLineCountBytes);
 }

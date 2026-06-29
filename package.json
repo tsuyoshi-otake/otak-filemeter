@@ -13,7 +13,7 @@
     "url": "https://github.com/tsuyoshi-otake/otak-filemeter/issues"
   },
   "homepage": "https://github.com/tsuyoshi-otake/otak-filemeter#readme",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "files": [
     "out/*.js",
     "out/*.js.map",
@@ -30,8 +30,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "onCommand:otakFilemeter.refresh"
+    "*"
   ],
   "main": "./out/extension.js",
   "capabilities": {
@@ -57,26 +56,6 @@
           "default": true,
           "markdownDescription": "%configuration.enabled.description%"
         },
-        "otakFilemeter.badgeMetric": {
-          "type": "string",
-          "scope": "resource",
-          "default": "size",
-          "enum": [
-            "size",
-            "lines"
-          ],
-          "enumDescriptions": [
-            "%configuration.badgeMetric.size%",
-            "%configuration.badgeMetric.lines%"
-          ],
-          "markdownDescription": "%configuration.badgeMetric.description%"
-        },
-        "otakFilemeter.showLineCountInTooltip": {
-          "type": "boolean",
-          "scope": "resource",
-          "default": false,
-          "markdownDescription": "%configuration.showLineCountInTooltip.description%"
-        },
         "otakFilemeter.maxLineCountBytes": {
           "type": "number",
           "scope": "resource",
@@ -89,12 +68,13 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "clean": "node scripts/clean-out.mjs",
     "gen:nls": "node scripts/gen-package-nls.mjs",
-    "compile": "npm run gen:nls && tsc -p ./",
+    "compile": "npm run clean && npm run gen:nls && tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint src",
     "test": "npm run compile && node scripts/run-unit-tests.mjs",
-    "package": "npm run compile && vsce package"
+    "package": "npm run compile && vsce package --allow-star-activation"
   },
   "devDependencies": {
     "@types/node": "20.x",

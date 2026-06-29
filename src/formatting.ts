@@ -1,4 +1,4 @@
-const SIZE_UNITS = ['B', 'KiB', 'MiB', 'GiB', 'TiB'] as const;
+const SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB'] as const;
 const BADGE_UNITS = ['K', 'M', 'G', 'T'] as const;
 
 export function formatExactSize(bytes: number): string {
@@ -18,12 +18,8 @@ export function formatExactSize(bytes: number): string {
 }
 
 export function formatSizeBadge(bytes: number): string {
-    if (bytes === 0) {
-        return '0';
-    }
-
     if (bytes < 1024) {
-        return 'B';
+        return `${bytes}B`;
     }
 
     let value = bytes / 1024;
@@ -33,23 +29,16 @@ export function formatSizeBadge(bytes: number): string {
         unitIndex++;
     }
 
-    return `${formatCompactNumber(value)}${BADGE_UNITS[unitIndex]}`;
-}
-
-export function formatLineBadge(lines: number): string {
-    if (lines < 1000) {
-        return String(lines);
-    }
-
-    if (lines < 999500) {
-        return `${formatCompactNumber(lines / 1000)}K`;
-    }
-
-    return `${formatCompactNumber(lines / 1000000)}M`;
+    return `${formatCompactNumber(value)}${BADGE_UNITS[unitIndex]}B`;
 }
 
 export function formatLineCount(lines: number): string {
     return `${lines.toLocaleString()} ${lines === 1 ? 'line' : 'lines'}`;
+}
+
+export function formatMetricsTooltip(bytes: number, lineCount: number | undefined): string {
+    const lines = lineCount === undefined ? 'Lines: unavailable' : `Lines: ${formatLineCount(lineCount)}`;
+    return `${lines}\nSize: ${formatExactSize(bytes)}`;
 }
 
 function formatCompactNumber(value: number): string {
