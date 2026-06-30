@@ -13,7 +13,7 @@
     "url": "https://github.com/tsuyoshi-otake/otak-filemeter/issues"
   },
   "homepage": "https://github.com/tsuyoshi-otake/otak-filemeter#readme",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "files": [
     "out/*.js",
     "out/*.js.map",

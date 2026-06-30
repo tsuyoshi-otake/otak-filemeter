@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.1.8] - 2026-06-30
+
+### Changed
+- Updated the extension icon and repackaged the release.
+
 ## [0.1.7] - 2026-06-30
 
 ### Changed

@@ -73,7 +73,7 @@ ext install odangoo.otak-filemeter
 ```bash
 npm install
 npm run package
-code --install-extension otak-filemeter-0.1.7.vsix
+code --install-extension otak-filemeter-0.1.8.vsix
 ```
 
 Reload VS Code afterwards if the Explorer was already open.
