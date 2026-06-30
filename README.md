@@ -1,6 +1,6 @@
 <div align="center">
 
-# Otak File Meter
+# otak-filemeter
 
 **Line count and file size tooltips for the VS Code Explorer.**  
 otak-filemeter adds lightweight Explorer decorations so you can inspect file metrics without opening files.
@@ -42,7 +42,7 @@ VS Code's built-in Explorer does not expose a public API for adding arbitrary ta
 
 | Command | Description |
 | --- | --- |
-| `Otak File Meter: Refresh File Meter Badges` | Clears cached metrics and asks VS Code to refresh Explorer decorations. |
+| `otak-filemeter: Refresh File Meter Badges` | Clears cached metrics and asks VS Code to refresh Explorer decorations. |
 
 ## Notes
 

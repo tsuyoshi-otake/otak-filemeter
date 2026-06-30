@@ -1,6 +1,6 @@
 {
   "name": "otak-filemeter",
-  "displayName": "Otak File Meter",
+  "displayName": "otak-filemeter",
   "description": "%extension.description%",
   "publisher": "odangoo",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "url": "https://github.com/tsuyoshi-otake/otak-filemeter/issues"
   },
   "homepage": "https://github.com/tsuyoshi-otake/otak-filemeter#readme",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "files": [
     "out/*.js",
     "out/*.js.map",

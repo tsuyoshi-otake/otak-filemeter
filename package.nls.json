@@ -2,7 +2,7 @@
   "capabilities.untrustedWorkspaces": "Shows local Explorer decorations only and does not write workspace files.",
   "configuration.enabled.description": "Enables Explorer file metric badges.",
   "configuration.maxLineCountBytes.description": "Maximum file size, in bytes, that otak-filemeter reads when counting lines for tooltips. Set to 0 to disable line counting.",
-  "configuration.title": "Otak File Meter",
+  "configuration.title": "otak-filemeter",
   "extension.description": "Show file line counts and sizes in VS Code Explorer tooltips.",
   "refresh.title": "Refresh File Meter Badges"
 }

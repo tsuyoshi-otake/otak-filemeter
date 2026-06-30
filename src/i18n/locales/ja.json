@@ -2,7 +2,7 @@
   "capabilities.untrustedWorkspaces": "Explorerのローカル装飾のみを表示し、ワークスペース内のファイルは書き込みません。",
   "configuration.enabled.description": "Explorerのファイル指標バッジを有効にします。",
   "configuration.maxLineCountBytes.description": "tooltipの行数計算時にotak-filemeterが読み込む最大ファイルサイズをバイト単位で指定します。0にすると行数計算を無効化します。",
-  "configuration.title": "Otak File Meter",
+  "configuration.title": "otak-filemeter",
   "extension.description": "VS Code Explorerのtooltipにファイルの行数とサイズを表示します。",
   "refresh.title": "File Meterバッジを更新"
 }
