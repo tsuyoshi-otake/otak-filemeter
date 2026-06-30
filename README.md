@@ -24,6 +24,8 @@ otak-filemeter adds lightweight Explorer decorations so you can inspect file met
 
 VS Code's built-in Explorer does not expose a public API for adding arbitrary table columns. otak-filemeter uses the supported decoration API instead: each file gets a compact badge, and exact details are available from the hover tooltip.
 
+![image](assets/0e7d87c790aac33e.png)
+
 ## Capabilities
 
 - **Metrics tooltip**: hover the decoration to see line count and file size.
