@@ -74,7 +74,9 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint src",
     "test": "npm run compile && node scripts/run-unit-tests.mjs",
-    "package": "npm run compile && vsce package --allow-star-activation"
+    "package": "npm run compile && vsce package --allow-star-activation",
+    "package:vsix": "npm run compile && vsce package --allow-star-activation",
+    "deploy": "vsce publish --skip-duplicate"
   },
   "devDependencies": {
     "@types/node": "20.x",
