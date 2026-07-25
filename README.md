@@ -31,6 +31,9 @@ VS Code's built-in Explorer does not expose a public API for adding arbitrary ta
 - **Metrics tooltip**: hover the decoration to see line count and file size.
 - **Small marker badge**: uses a compact `i` badge because VS Code decoration tooltips need a decoration target.
 - **Bounded line counting**: line counts are calculated only for files under the configured byte limit.
+- **Bounded memory**: files are counted a chunk at a time, so measuring holds 64 KB whatever the file's size, and the remembered measurements are capped.
+- **Scanner-friendly reading**: files VS Code already has open are never read, types that can only be binary are never opened, and reads in flight are capped at 4.
+- **Batched redraws**: file changes are announced as one event, so a build or a branch switch does not turn into thousands of decoration round trips.
 - **Local only**: no telemetry, no network calls, and no workspace writes.
 
 ## Settings
@@ -55,6 +58,12 @@ Lines: 100 lines
 Size: 5.0 KB
 ```
 
+### Reading Files
+
+A line count needs the file's contents, and reading a file's contents is exactly what makes an on-access virus scanner such as Sophos or Microsoft Defender scan it — so otak-filemeter reads as little as it can get away with.
+
+A file that is already open in an editor is answered from the editor's own line count, without any read at all. A file whose type can only be binary is never opened, because its line count would be discarded anyway. Everything else is read a chunk at a time and stops early if the first chunk shows binary content, and no more than four files are read at once, so revealing a folder does not arrive at the scanner as a burst. Only file sizes and line counts are remembered afterwards, capped at 4096 files, so the same file is not read again while it is unchanged.
+
 ## Requirements
 
 - VS Code **1.125.0** or newer
@@ -73,7 +82,7 @@ ext install odangoo.otak-filemeter
 ```bash
 npm install
 npm run package
-code --install-extension otak-filemeter-0.1.8.vsix
+code --install-extension otak-filemeter-0.1.9.vsix
 ```
 
 Reload VS Code afterwards if the Explorer was already open.
